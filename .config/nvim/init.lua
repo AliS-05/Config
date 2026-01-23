@@ -1,4 +1,4 @@
--- =========================
+- =========================
 -- Basics
 -- =========================
 vim.opt.number = true
@@ -34,6 +34,7 @@ local themes = {
   "catppuccin-frappe",
   "kanagawa-wave",
   "kanagawa-lotus",
+  "everforest"
 }
 
 local current_index = 1

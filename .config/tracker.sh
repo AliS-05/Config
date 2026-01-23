@@ -146,3 +146,4 @@ top_commands_yesterday
 loc_this_week
 random_quote
 cprompt
+cdpro
