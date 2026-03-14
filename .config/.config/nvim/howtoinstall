@@ -1,3 +1,0 @@
-git clone <link to theme>
-mv folder to ./pack/colors/start
-add to cycle list in init.lua
