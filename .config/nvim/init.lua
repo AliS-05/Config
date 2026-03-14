@@ -1,4 +1,6 @@
-- =========================
+vim.deprecate = function() end
+
+-- ========================= 
 -- Basics
 -- =========================
 vim.opt.number = true
@@ -7,6 +9,57 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
 vim.opt.scrolloff = 999  -- keep cursor centered
+
+
+-- =========================
+-- LSP Configuration
+-- =========================
+
+-- !!! CURRENTLY DISABLED FOR OS DEV, DOES NOT LIKE FREESTANDING CODE !!!
+
+-- local lspconfig = require('lspconfig')
+-- 
+-- -- Function to set up keymaps ONLY when an LSP is active in a buffer
+-- local on_attach = function(client, bufnr)
+--   local opts = { noremap=true, silent=true, buffer=bufnr }
+-- 
+--   -- Jump to definition
+--   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+--   -- Show documentation (Hover)
+--   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+--   -- Format code
+--   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
+--   -- Rename variable globally
+--   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+--   -- Code actions (Quick fixes)
+--   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+--   -- Diagnostics (Navigate errors)
+--   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+--   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+-- end
+-- 
+-- -- Configure clangd
+-- lspconfig.clangd.setup({
+--   on_attach = on_attach,
+--   cmd = {
+--     "clangd",
+--     "--background-index",
+--     "--clang-tidy",
+--     "--header-insertion=iwyu",
+--     "--completion-style=detailed",
+--     "--function-arg-placeholders",
+--     "--fallback-style=llvm",
+--   },
+-- })
+
+
+
+-- =========================
+-- :Explore mode (File system mode)
+-- =========================
+vim.g.nextrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.keymap.set("n", "<leader>e", ":Ex<CR>");
 
 -- =========================
 -- Telescope
@@ -25,16 +78,9 @@ vim.keymap.set("n", "<leader>fg", require("telescope.builtin").live_grep, { desc
 -- =========================
 local themes = {
   "gruvbox",
-  "deepwhite",
-  "tokyonight-night",
-  "tokyonight-day",
-  "rose-pine",
-  "catppuccin-mocha",
-  "catppuccin-latte",
-  "catppuccin-frappe",
   "kanagawa-wave",
-  "kanagawa-lotus",
-  "everforest"
+  "silentium",
+  "komau"
 }
 
 local current_index = 1
@@ -72,7 +118,9 @@ vim.keymap.set("n", "<leader>b", toggle_background, { desc = "Toggle light/dark 
 vim.keymap.set("n", "<leader>c", cycle_colorscheme, { desc = "Cycle colorscheme" })
 vim.api.nvim_create_user_command("CycleColors", cycle_colorscheme, {})
 
-vim.cmd("colorscheme kanagawa")
+local silentium = require("silentium")
+silentium.setup({ accent = "#00fc7e" })
+vim.cmd("colorscheme silentium")
 vim.cmd("syntax enable")
 
 -- =========================
